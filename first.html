@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresher's Party Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      // this function is used for options in course year
+      function updateYearOptions() {
+            // Get the selected course and year elements
+            var selectedCourse = document.getElementById("studcourse");
+            var yearSelect = document.getElementById("studyear");
+
+            // Clear existing options in the year select
+            yearSelect.innerHTML = "";
+
+            // Add options based on the selected course
+            if (selectedCourse.value === "BCA" || selectedCourse.value === "BBA") {
+                // Options for BCA and BBA(up to 3rd year)
+                for (var i = 1; i <= 3; i++) {
+                    var option = document.createElement("option");
+                    option.text = i + "st Year";
+                    option.value = i;
+                    yearSelect.add(option);
+                }
+            } 
+            else if (selectedCourse.value === "B.Tech") {
+                // Options for B.Tech first year only
+                for (var i = 1; i <= 1; i++) {
+                    var option = document.createElement("option");
+                    option.text = i + "st Year";
+                    option.value = i;
+                    yearSelect.add(option);
+                }
+            }
+            else if (selectedCourse.value === "MBA" || selectedCourse.value === "MCA") {
+                // Options for MBA and MCA
+                for (var i = 1; i <= 2; i++) {
+                    var option = document.createElement("option");
+                    option.text = i + "st Year";
+                    option.value = i;
+                    yearSelect.add(option);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-box">
+        <center><h2 id="heading">REGISTRATION FORM</h2></center>
+        <form method="post" action="checkdata.php">
+          <div class="user-box">
+            <input type="text" name="studname1" id="studname" required="">
+            <label>NAME</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="studurn1" id="studurn" required="" maxlength="16">
+            <label>URN</label>
+          </div>
+          <div class="user-box">
+            <input type="tel" onkeypress="return onlyNumberKey(event)" maxlength="10" name="studmobile1" required="">
+            <label>MOBILE</label>
+          </div>
+          <div class="user-box">
+            <CENTEr>
+                <select id="studcourse" name="studcourse1" onchange="updateYearOptions()" required="">
+                    <option value="">Select Course</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="B.Tech">B.Tech</option>
+                </select>
+                <select id="studyear" name="studyear1" required="">
+                    <option value="">Select Year</option>
+                </select>  
+            </CENTEr>
+          </div>
+          <center>
+            <button type="submit"><a>SUBMIT<span></span></a></button>
+          </center>
+        </form>
+    </div>
+    <script>
+      function onlyNumberKey(evt) {
+          var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+          if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+              return false;
+          return true;
+      }
+      const namecheck = document.getElementById("studname");
+      namecheck.addEventListener("namecheck", function() {
+        const regex = /^[a-zA-Z ]*$/;
+        if (!regex.test(namecheck.value)) {
+          namecheck.value = namecheck.value.replace(/[^a-zA-Z ]/g, "");
+        }
+      });
+    </script>
+</body>
+</html>
