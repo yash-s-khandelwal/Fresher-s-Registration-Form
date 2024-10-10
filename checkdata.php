@@ -25,9 +25,10 @@
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             if ($row['urn_exists'] == 1) {
-                echo "URN found";
+                echo "URN found <br>";
+                echo "Now Payment Gateway page will open <br>";
                 // if URN is correct it will redirect to payment gateway
-                header("Location:payment_gateway.php");
+                // header("Location:payment_gateway.php");
             } 
             else {
                 echo "No URN found";
