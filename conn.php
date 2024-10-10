@@ -6,4 +6,5 @@
     
     // Create connection
     $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
+    $samplename = "sample name variable passed";
 ?>
