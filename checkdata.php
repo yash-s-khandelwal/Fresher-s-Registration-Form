@@ -3,13 +3,21 @@
     echo "connection successful...<br>";
     echo "$samplename <br>";
    
-    $studname = filter_input(INPUT_POST, 'studname1');
+    // $studname = filter_input(INPUT_POST, 'studname1');
+    // echo "$studname<br>";
+
     $studurn = filter_input(INPUT_POST, 'studurn1');
     $studmobile = filter_input(INPUT_POST, 'studmobile1');
     $studcourse = filter_input(INPUT_POST, 'studcourse1');
     $studyear = filter_input(INPUT_POST, 'studyear1');
 
-    echo "$studname<br>";
+    $sql1 = "SELECT * FROM verify WHERE URN = '$studurn';";
+    $studname= mysqli_query($conn,$sql1);
+    if(mysqli_num_rows($studname)>0){
+        $row = mysqli_fetch_assoc($studname);
+        echo "$row[Name]<br>";
+    }
+
     echo "$studurn<br>";
     echo "$studmobile<br>";
     echo "$studcourse<br>";
