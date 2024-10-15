@@ -40,7 +40,7 @@
             } 
             else {
                 echo "No URN found";
-                header("Location:first.html?error=invalidURN");            
+                header("Location:index.html?error=invalidURN");            
             }
         } else {
             echo "Error: " . mysqli_error($conn);
